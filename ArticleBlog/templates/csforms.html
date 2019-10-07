@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后端校验</title>
+</head>
+<body>
+<div>
+    <form action="" method="post">
+        {% csrf_token %}
+        {% for one in form_cspost %}
+            <p>
+            {{ one.label }}
+            {{ one }}
+            </p>
+        {% endfor %}
+        <input type="submit" value="提交">
+    </form>
+{{ content }}
+</div>
+
+
+</body>
+</html>

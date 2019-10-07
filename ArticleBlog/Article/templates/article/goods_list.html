@@ -1,0 +1,60 @@
+{% extends 'article/base.html' %}
+{% block title %}
+    文章列表
+{% endblock %}
+
+{% block label %}
+    文章列表
+    <a href="/Article/goods_add/">增加文章</a>
+{% endblock %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>文章编号</th>
+                <th>文章名称</th>
+                <th>文章创作日期</th>
+                <th>推荐</th>
+                <th>点击率</th>
+                <th>操作</th>
+            </tr>
+
+        </thead>
+        {% for one in goods_list %}
+        <tbody>
+            <tr>
+                <td>{{ one.id }}</td>
+                <td>{{ one.title}}</td>
+                <td>{{ one.date}}</td>
+                <td>{{ one.recommend }}</td>
+                <td>{{ one.click}}</td>
+                <td>
+                    <button class="btn btn-primary">修改</button>
+{#                    <button class="btn btn-warning">下架</button>#}
+                    {% if one.status == 1 %}
+                        <a href="/Article/goods_status/down/{{ one.id }}" type="button" class="btn btn-warning">下架</a>
+                        {% else %}
+                        <a href="/Article/goods_status/up/{{ one.id }}" type="button" class="btn btn-warning">上架</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot></tfoot>
+
+    </table>
+        <ul style="float:right; margin-right: 50px" class="pagination">
+            {% for one in goods_all.page_range %}
+                <li class="paginate_button page-item previous">
+                <a href="/Article/goods_list/{{ status }}/{{ one }}" class="page-link">{{ one }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+{% endblock %}
+{#                {% if one.goods_status == 1 %}#}
+{#                {% if status == "1" %}#}
+{#                    <a href="/goods_list/1/{{ one }}" class="page-link">{{ one }}</a>#}
+{#                {% else %}#}
+{#                    <a href="/goods_list/0/{{ one }}" class="page-link">{{ one }}</a>#}
+{#                {% endif %}#}

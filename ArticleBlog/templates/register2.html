@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+</head>
+<body>
+<div>
+    <h3>普通的样式</h3>
+    {{ register2_form}}
+    <hr>
+</div>
+<div>
+    <h3>p标签样式</h3>
+    {{ register2_form.as_p }}
+    <hr>
+</div>
+<div>
+    <h3>ul标签的样式</h3>
+    {{ register2_form.as_ul }}
+    <hr>
+</div>
+<div>
+    <h3>table 标签的样式</h3>
+    {{ register2_form.as_table}}
+    <hr>
+</div>
+<div>
+    <h3>自定义table样式</h3>
+    <table>
+        {% for one in register2_form %}
+            <tr>
+                <th>
+                    {{ one.label }}
+                </th>
+                <td>
+                    {{ one }}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+</div>
+<hr>
+<h2>提交需要包围一个form表单</h2>
+<h3>自定义table样式</h3>
+<div>
+    <form action="" method="post">
+        {% csrf_token %}
+
+    <table>
+        {% for one in register2_form %}
+            <tr>
+                <th>
+                    {{ one.label }}
+                </th>
+                <td>
+                    {{ one }}
+                </td>
+            </tr>
+        {% endfor %}
+            <tr>
+                <th>
+                    <input type="submit" value="提交">
+                </th>
+            </tr>
+
+    </table>
+    </form>
+
+</div>
+
+</body>
+</html>
